@@ -16,7 +16,7 @@
                 "type": "Debit",
                 "description": "WITHDRAWL",
                 "status": "cleared",
-                "amount": 600
+                "amount": 600 
             }
         ],
         "prior_balance": 33553.21,
