@@ -8,6 +8,7 @@ const app = new express();
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
 
+/* Module 3 */
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,7 +24,7 @@ const userData = fs.readFileSync(
 );
 const users = JSON.parse(userData);
 
-/*  
+/*  Module 4
   1. update index route  
   2. Add title into index.ejs
   3. Take all info exist into accounts.json 
@@ -49,14 +50,18 @@ app.get("/credit", (req, res) =>
 
 app.get("/profile", (req, res) => res.render("profile", { user: users[0] }));
 
+/* Module 5 */
+// GET
+app.get("/transfer", (req, res) => res.render("transfer"));
 
-/* app.get('/transfer', (req, res) => res.render('transfer'));
 
+//Create
 app.post('/transfer', (req, res) => {
-  accounts[req.body.from].balance -= req.body.amount;
+ accounts[req.body.from].balance -= req.body.amount;
   accounts[req.body.to].balance += parseInt(req.body.amount, 10);
   let accountsJSON = JSON.stringify(accounts, null, 4);
   fs.writeFileSync(
+    // specify the absolute path using: path.join & __dirname
     path.join(__dirname, 'json', 'accounts.json'),
     accountsJSON,
     'utf8'
@@ -64,6 +69,9 @@ app.post('/transfer', (req, res) => {
   res.render('transfer', { message: 'Transfer Completed' });
 });
 
+app.get('/payment', (req, res) => res.render('payment', {account: accounts.credit}));
+
+/* 
 app.get('/payment', (req, res) =>
   res.render('payment', { account: accounts.credit })
 );
